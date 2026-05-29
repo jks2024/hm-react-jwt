@@ -21,7 +21,7 @@ const Common = {
     try {
       // 재발급 엔드포인트: POST /auth/reissue
       const res = await axios.post(
-        `${Common.KH_DOMAIN}/auth/reissue`,
+        `${Common.HM_DOMAIN}/auth/reissue`,
         tokenRequestDto,
       );
       // 백엔드 ApiResponse 구조: { status, message, data: { accessToken, ... } }
