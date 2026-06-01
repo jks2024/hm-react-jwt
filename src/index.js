@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import { AuthProvider } from "./context/AuthContext";
 import { ModalProvider } from "./context/ModalContext";
+import Modal from "./components/Modal";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -11,6 +12,7 @@ root.render(
   <AuthProvider>
     <ModalProvider>
       <App />
+      <Modal />
     </ModalProvider>
   </AuthProvider>,
 );
