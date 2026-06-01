@@ -46,7 +46,7 @@ const Btn = styled.button`
 `;
 
 const Modal = () => {
-  const { modal, closeModal } = useModal;
+  const { modal, closeModal } = useModal();
   if (!modal.isOpen) return null; // 모달이 열린 상태가 아니면 렌더링 없음
 
   const handleConfirm = () => {
