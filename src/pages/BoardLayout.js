@@ -56,7 +56,7 @@ const BoardLayout = () => {
 
   const handleLogout = async () => {
     try {
-      await BoardApi.logout(); // 서버에 리프레시 토큰 제거 요청
+      //await Boarlogout(); // 서버에 리프레시 토큰 제거 요청
     } catch (e) {
       console.error(e);
     } finally {

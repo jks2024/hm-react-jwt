@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import BoardApi from "../api/BoardApi";
+import AxiosApi from "../api/AxiosApi";
 
 // ── Styled Components ───────────────────────────────────────
 const Container = styled.div`
@@ -108,7 +108,7 @@ const SignUpPage = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const response = await BoardApi.signup(formData);
+      const response = await AxiosApi.signup(formData);
       // 백엔드 ApiResponse: response.data.data = MemberResDto
       const member = response.data.data;
       alert(`${member.name}님, 회원가입이 완료되었습니다!`);
