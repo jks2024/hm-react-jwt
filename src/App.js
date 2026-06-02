@@ -17,6 +17,7 @@ function App() {
           <Route path="/posts" element={<PostListPage />} />
           <Route path="/posts/:id" element={<PostDetailPage />} />
           <Route path="posts/new" element={<PostWritePage />} />
+          <Route path="posts/:id/edit" element={<PostWritePage />} />
         </Route>
       </Routes>
     </BrowserRouter>
