@@ -82,9 +82,9 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
 
   const handleLogin = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // form의 기본 이벤트 제거
     try {
-      const response = await AxiosApi.login(email, password);
+      const response = await AxiosApi.login(email, password); // 비동기 통신
 
       // 백엔드 ApiResponse 구조: response.data.data = TokenDto
       const { accessToken, refreshToken } = response.data.data;
