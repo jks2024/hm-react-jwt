@@ -87,15 +87,14 @@ const LoginPage = () => {
       const response = await AxiosApi.login(email, password); // 비동기 통신
 
       // 백엔드 ApiResponse 구조: response.data.data = TokenDto
-      const { accessToken, refreshToken } = response.data.data;
+      const { accessToken, refreshToken, name } = response.data.data;
 
       // 토큰 로컬스토리지 저장
       Common.setAccessToken(accessToken);
       Common.setRefreshToken(refreshToken);
 
       // ★ AuthContext 상태 업데이트 (로그인 성공)
-      // 실제 프로젝트에서는 /auth/me 엔드포인트로 유저 정보를 가져올 수도 있음
-      login({ email }); // 간단히 email만 저장
+      login({ email, name }); // 간단히 email만 저장
 
       navigate("/posts");
     } catch (error) {

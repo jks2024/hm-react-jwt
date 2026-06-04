@@ -6,6 +6,9 @@ import SignUpPage from "./pages/SignUpPage";
 import PostListPage from "./pages/PostListPage";
 import PostDetailPage from "./pages/PostDetailPage";
 import PostWritePage from "./pages/PostWritePage";
+import Chat from "./pages/Chat";
+import ChatRoomCreate from "./pages/ChatRoomCreate";
+import Chatting from "./pages/Chatting";
 
 function App() {
   return (
@@ -18,6 +21,9 @@ function App() {
           <Route path="/posts/:id" element={<PostDetailPage />} />
           <Route path="posts/new" element={<PostWritePage />} />
           <Route path="posts/:id/edit" element={<PostWritePage />} />
+          <Route path="/chat" element={<Chat />} />
+          <Route path="chat-create" element={<ChatRoomCreate />} />
+          <Route path="chatting/:roomId" element={<Chatting />} />
         </Route>
       </Routes>
     </BrowserRouter>

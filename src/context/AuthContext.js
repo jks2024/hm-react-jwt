@@ -1,32 +1,35 @@
 import { createContext, useContext, useState } from "react";
 
-// Context 생성
 const AuthContext = createContext(null);
 
-// Provider 컴포넌트 생성 - 상태와 함수를 하위 컴포넌트 전체에 제공
 export const AuthProvider = ({ children }) => {
-  // 1. 상태 보관
-  // localStorage에 토큰이 있으면 이미 로그인된 상태로 초기화
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("accessToken") !== null,
   );
-  const [user, setUser] = useState(null);
 
-  // 2. 상태 변경 함수 제공
-  // 로그인 성공 시 호출 - 유저 정보를 받아 상태 업데이트
+  // 새로고침 후에도 name/email 유지: localStorage에서 복원
+  const [user, setUser] = useState(() => {
+    const name = localStorage.getItem("userName");
+    const email = localStorage.getItem("userEmail");
+    return name ? { name, email } : null;
+  });
+
+  // 로그인 성공 시 호출
   const login = (userData) => {
+    // localStorage에도 저장 → 새로고침 시 복원 가능
+    if (userData.name) localStorage.setItem("userName", userData.name);
+    if (userData.email) localStorage.setItem("userEmail", userData.email);
     setIsLoggedIn(true);
     setUser(userData);
   };
 
-  // 로그아웃 시 호출 - 토큰 제거 + 상ㄹ태 초기화
+  // 로그아웃 시 호출
   const logout = () => {
     localStorage.clear();
     setIsLoggedIn(false);
     setUser(null);
   };
 
-  // Provider로 하위 컴포넌트 전체에 값 배포
   return (
     <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>
       {children}
@@ -34,6 +37,5 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// 커스텀 훅(Hook)
 export const useAuth = () => useContext(AuthContext);
 export default AuthContext;

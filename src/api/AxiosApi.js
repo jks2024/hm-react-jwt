@@ -38,6 +38,18 @@ const AxiosApi = {
   getMembers: () => AxiosInstance.get("/api/members"),
   // 개별 회원 조회
   getMember: (id) => AxiosInstance.get(`/api/members/${id}`),
+  // 채팅방 목록 조회
+  chatList: async () => {
+    return await publicApi.get("/chat/list");
+  },
+  // 채팅방 생성
+  chatCreate: async (name) => {
+    return await publicApi.post("/chat/new", { name });
+  },
+  // 채팅방 정보 조회
+  chatDetail: async (roomId) => {
+    return await publicApi.get(`/chat/room/${roomId}`);
+  },
 };
 
 export default AxiosApi;
